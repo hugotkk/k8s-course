@@ -110,3 +110,21 @@ Events:            <none>
  
 - keep namespace in default first, put third parties plugin into other namespace
 ```
+
+```
+/ # nslookup database
+nslookup: can't resolve '(null)': Name does not resolve
+
+Name:      database
+Address 1: 10.111.239.97 database.default.svc.cluster.local
+```
+The hostname is database.default.svc.cluster.local for the databse pod. Why database works?
+
+Because the resolv.conf search added `default.svc.cluster.local`
+
+```
+/ # cat /etc/resolv.conf
+nameserver 10.96.0.10
+search default.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+```
