@@ -16,6 +16,20 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  name: database
+spec:
+  ports:
+    - name: mysql
+      port: 3306
+  selector:
+    app: mysql
+  type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
   name: fleetman-queue
 spec:
   ports:
