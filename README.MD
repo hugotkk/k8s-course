@@ -28,18 +28,19 @@ minikube start --vm-drive=none
 
 default is using docker. the port does not expose as well.
 
-# Layout
+# Architecture
 
 deployment -> replicaset -> pod
 
 nodeport service -> pod
 
-redeployment ->old replicaset is still here but replicas become 0
+deployment ->old replicaset is still here but replicas become 0
 
 minReadySeconds under DeploymentSpec > spec type
 
-# Dashboard
+# Dashboard (namepsace = default)
 
+```
 $ kubectl get all
 NAME                          READY   STATUS    RESTARTS   AGE
 pod/queue-release-0           1/1     Running   0          60m
@@ -58,10 +59,11 @@ NAME                                DESIRED   CURRENT   READY   AGE
 replicaset.apps/webapp-6ccdfd88cb   0         0         0       41m
 replicaset.apps/webapp-77896f4bf8   2         2         2       40m
 replicaset.apps/webapp-d48d5ff54    0         0         0       9m57s
-
+```
 
 # DNS
 
+```
 $ kubectl get ns
 NAME              STATUS   AGE
 default           Active   173m
@@ -78,7 +80,9 @@ kube-controller-manager-minikube   1/1     Running   0          174m
 kube-proxy-jb7m4                   1/1     Running   0          174m
 kube-scheduler-minikube            1/1     Running   0          174m
 storage-provisioner                1/1     Running   1          174m
+```
 
+```
 $ kubectl describe svc -n kube-system kube-dns
 Name:              kube-dns
 Namespace:         kube-system
@@ -105,3 +109,4 @@ Session Affinity:  None
 Events:            <none>
  
 - keep namespace in default first, put third parties plugin into other namespace
+```
