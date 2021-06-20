@@ -28,4 +28,12 @@ minikube start --vm-drive=none
 
 default is using docker. the port does not expose as well.
 
+# Layout
 
+deployment -> replicaset -> pod
+
+nodeport service -> pod
+
+redeployment ->old replicaset is still here but replicas become 0
+
+minReadySeconds under DeploymentSpec > spec type
