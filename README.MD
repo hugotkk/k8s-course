@@ -128,3 +128,12 @@ nameserver 10.96.0.10
 search default.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5
 ```
+
+$ kubectl delete -f .
+deployment.apps "webapp" deleted
+pod "mysql" deleted
+pod "queue-release-0" deleted
+service "fleetman-webapp" deleted
+service "database" deleted
+service "fleetman-queue" deleted
+
