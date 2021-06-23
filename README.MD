@@ -137,3 +137,8 @@ service "fleetman-webapp" deleted
 service "database" deleted
 service "fleetman-queue" deleted
 
+# service name
+
+name convention: service name = repo name
+
+the service name affect the microservice as the name will be used as the hostname to be connected by other services
